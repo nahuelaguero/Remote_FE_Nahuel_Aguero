@@ -1,11 +1,11 @@
 import React from "react";
 import useStockData from "../hooks/useStockData";
 import Calendar from "../components/icons/Calendar";
-import {Open} from "./icons/Open";
-import {Low} from "./icons/Low";
-import {High} from "./icons/High";
-import {Close} from "./icons/Close";
-import {Volumen} from "./icons/Volumen";
+import { Open } from "../components/icons/Open";
+import { Low } from "../components/icons/Low";
+import { High } from "../components/icons/High";
+import { Close } from "../components/icons/Close";
+import { Volumen } from "../components/icons/Volumen";
 
 interface StockProps {
   symbol: string;
@@ -25,46 +25,26 @@ const Stock: React.FC<StockProps> = ({ symbol }) => {
       <h2 className="text-2xl font-bold mb-4 text-gray-800">{symbol}</h2>
       {latestData && (
         <>
-          <p>
-            <Calendar /> {latestDate}
+          <p className="flex justify-end align-bottom pb-2 text-gray-600">
+            {latestDate} <Calendar />
           </p>
-          <p>
-            <strong>Open:</strong> {latestData["1. open"]}
+          <div className="flex align-bottom pb-2 text-green-600 group relative">
+            {latestData["1. open"]} <Open name="Open" />
+          </div>
+          <p className="flex align-bottom pb-2 text-blue-600 group relative">
+            {latestData["2. high"]} <High name="High" />
           </p>
-          <p>
-            <strong>High:</strong> {latestData["2. high"]}
+          <p className="flex align-bottom pb-2 text-red-600 group relative">
+            {latestData["3. low"]} <Low name="Low" />
           </p>
-          <p>
-            <strong>Low:</strong> {latestData["3. low"]}
+          <p className="flex align-bottom pb-2 text-orange-600 group relative">
+            {latestData["4. close"]} <Close name="Close" />
           </p>
-          <p>
-            <strong>Close:</strong> {latestData["4. close"]}
-          </p>
-          <p>
-            <strong>Volume:</strong> {latestData["5. volume"]}
+          <p className="flex align-bottom pb-2 text-slate-900 group relative">
+            {latestData["5. volume"]} <Volumen name="Volumen" />
           </p>
         </>
       )}
-      <div className="mt-2">
-        <p className="flex justify-end align-bottom pb-2 text-gray-600">
-          2024-06-06 <Calendar />
-        </p>
-        <div className="flex align-bottom pb-2 text-green-600 group relative">
-          195.6950 <Open name={"Open"}/>
-        </div>
-        <p className="flex align-bottom pb-2 text-blue-600 group relative">
-          196.6000 <High name={"High"}/>
-        </p>
-        <p className="flex align-bottom pb-2 text-red-600 group relative">
-          194.1700 <Low name={"Low"}/>
-        </p>
-        <p className="flex align-bottom pb-2 text-orange-600 group relative">
-          194.4800 <Close name={"Close"}/>
-        </p>
-        <p className="flex align-bottom pb-2 text-slate-900 group relative">
-          41181753 <Volumen name={"Volumen"}/>
-        </p>
-      </div>
     </div>
   );
 };
